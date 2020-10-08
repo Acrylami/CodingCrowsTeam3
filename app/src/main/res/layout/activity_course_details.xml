@@ -8,17 +8,17 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/endDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="134dp"
         android:text="End Date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField" />
+        app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/courseTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="445dp"
         android:background="@drawable/back"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -39,7 +39,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/cancelButton"
         android:layout_width="102dp"
         android:layout_height="52dp"
         android:layout_marginStart="24dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/saveButton"
         android:layout_width="102dp"
         android:layout_height="52dp"
         android:layout_marginStart="162dp"
@@ -65,11 +65,11 @@
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/cancelButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDate2"
+        android:id="@+id/startDate"
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
@@ -78,14 +78,14 @@
         android:background="@drawable/back"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toStartOf="@+id/editTextDate3"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+        app:layout_constraintEnd_toStartOf="@+id/endDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField"
+        app:layout_constraintTop_toBottomOf="@+id/courseTitle"
         tools:text="@tools:sample/date/mmddyy" />
 
     <EditText
-        android:id="@+id/editTextDate3"
+        android:id="@+id/endDate"
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
@@ -99,14 +99,14 @@
         android:selectAllOnFocus="false"
         android:singleLine="true"
         android:textColor="#0C0C0C"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextDate2"
-        app:layout_constraintTop_toBottomOf="@+id/textField"
+        app:layout_constraintStart_toEndOf="@+id/startDate"
+        app:layout_constraintTop_toBottomOf="@+id/courseTitle"
         tools:text="19-01-10" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/courseURL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -114,10 +114,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="284dp"
         android:background="@drawable/back"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2">
+        app:layout_constraintTop_toBottomOf="@+id/startDate">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -126,7 +126,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/courseDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -138,19 +138,19 @@
         android:gravity="start|top"
         android:hint="Description"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/courseURL" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/startDateText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="17dp"
         android:text="Start Date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField" />
+        app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
