@@ -7,24 +7,29 @@
     tools:context=".CourseDetails">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button3"
         android:layout_width="102dp"
         android:layout_height="52dp"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="292dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#DCDDDD"
         android:text="CANCEL"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="102dp"
         android:layout_height="52dp"
+        android:layout_marginStart="162dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#0D84DF"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
