@@ -8,7 +8,6 @@ public class Course {
     private Date startDate;
     private String endDate;
     private String description;
-    
     private String courseUrl;
 
     public Course() {
