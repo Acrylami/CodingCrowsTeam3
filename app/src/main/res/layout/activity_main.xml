@@ -4,15 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CCCCCC"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/previousMonthButton"
+        android:layout_width="53dp"
+        android:layout_height="48dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:tint="#6C6C6C"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
+    <ImageButton
+        android:id="@+id/nextMonthButton"
+        android:layout_width="53dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="356dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:tint="#6C6C6C"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+    <ImageButton
+        android:id="@+id/addCourseButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#00A66363"
+        android:scaleType="fitCenter"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="346dp"
+        tools:layout_editor_absoluteY="541dp"
+        tools:srcCompat="@android:drawable/ic_menu_add" />
+
+    <ScrollView
+        android:id="@+id/courses_scrollview"
+        android:layout_width="409dp"
+        android:layout_height="500dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="48dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/course1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#264653"
+                android:text="Intro to Algorithms"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/course2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#2A9D8F"
+                android:text="Databases"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/course3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#E9C46A"
+                android:text="Graphics"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/course4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#F4A261"
+                android:text="THEORY OF COMPUTATION"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/monthName"
+        android:layout_width="316dp"
+        android:layout_height="49dp"
+        android:background="#FFFFFF"
+        android:text="January"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="center"
+        app:layout_constraintBottom_toTopOf="@+id/courses_scrollview"
+        app:layout_constraintEnd_toStartOf="@+id/nextMonthButton"
+        app:layout_constraintStart_toEndOf="@+id/previousMonthButton"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
