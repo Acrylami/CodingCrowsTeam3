@@ -1,8 +1,10 @@
-package com.app.courseplan;
+package com.app.courseplan.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.app.courseplan.R;
 
 public class CourseDetails extends AppCompatActivity {
 
