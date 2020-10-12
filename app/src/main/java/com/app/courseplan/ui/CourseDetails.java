@@ -1,7 +1,5 @@
 package com.app.courseplan.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,8 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.app.courseplan.DatabaseHelper;
 import com.app.courseplan.R;
+import com.app.courseplan.model.Course;
 
 public class CourseDetails extends AppCompatActivity {
 
@@ -31,26 +32,40 @@ public class CourseDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
+        //EditText fields
         courseTitle = findViewById(R.id.courseTitle);
         startDate = findViewById(R.id.startDate);
         endDate = findViewById(R.id.endDate);
         courseURL = findViewById(R.id.courseURL);
         courseDescription = findViewById(R.id.courseDescription);
+
+
         saveButton = findViewById(R.id.saveButton);
-// Save functionality
+
+        // Save functionality
         saveButton.setOnClickListener(new View.OnClickListener() {
+            //We'll need some way to differentiate between editing an existing course and adding a new one
+            //to prevent duplicate database entries...
             @Override
             public void onClick(View view) {
+                //Create a new course
+                Course newCourse = new Course(courseTitle.getText().toString(), startDate.getText().toString(), endDate.getText().toString(), courseDescription.getText().toString(), courseURL.getText().toString());
+
+                //Add that new course to the ArrayList of all our courses
+                MainActivity.allCourses.add(newCourse);
+
+                //Save to database
                 DatabaseHelper myDB = new DatabaseHelper(CourseDetails.this);
-                myDB.addCourse(courseTitle.getText().toString().trim(),
-                        startDate.getText().toString().trim(),
-                        endDate.getText().toString().trim(),
-                        courseURL.getText().toString().trim(),
-                        courseDescription.getText().toString().trim());
+                myDB.addCourse(
+                        newCourse.getCourseName().trim(),
+                        newCourse.getStartDate().trim(),
+                        newCourse.getEndDate().trim(),
+                        newCourse.getCourseUrl().trim(),
+                        newCourse.getDescription().trim());
             }
         });
 
-//        Cancel Button
+        // Cancel Button
         cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +77,7 @@ public class CourseDetails extends AppCompatActivity {
 
 
 //Date Picker Dialogs and Listeners
-//        Start Date
+        // Start Date
         startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +95,7 @@ public class CourseDetails extends AppCompatActivity {
                 dialog.show();
             }
         });
-//        End Date
+        // End Date
         endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
