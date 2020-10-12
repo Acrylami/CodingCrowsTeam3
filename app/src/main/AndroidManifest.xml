@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.CourseDetails"
-            android:label="Course Details">
+            android:label="Course Details"
+            android:parentActivityName=".ui.MainActivity">
         </activity>
         <activity android:name=".ui.MainActivity">
             <intent-filter>

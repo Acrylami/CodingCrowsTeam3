@@ -17,26 +17,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/courseTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="445dp"
+        android:layout_marginBottom="470dp"
         android:background="@drawable/back"
+        android:hint="Title"
         app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Course Title" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+    </EditText>
 
     <Button
         android:id="@+id/cancelButton"
@@ -78,6 +74,8 @@
         android:background="@drawable/back"
         android:ems="10"
         android:inputType="date"
+        android:hint="Start Date"
+        android:focusableInTouchMode="false"
         app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toStartOf="@+id/endDate"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +93,7 @@
         android:background="@drawable/back"
         android:ems="10"
         android:hint="End Date"
+        android:focusableInTouchMode="false"
         android:inputType="date"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -105,25 +104,22 @@
         app:layout_constraintTop_toBottomOf="@+id/courseTitle"
         tools:text="19-01-10" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/courseURL"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="270dp"
         android:background="@drawable/back"
+        android:hint="URL"
         app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startDate">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="URL" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </EditText>
 
     <EditText
         android:id="@+id/courseDescription"
