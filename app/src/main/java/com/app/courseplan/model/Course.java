@@ -5,7 +5,7 @@ import java.util.Date;
 public class Course {
     private int id;
     private String courseName;
-    private Date startDate;
+    private String startDate;
     private String endDate;
     private String description;
     private String courseUrl;
@@ -13,7 +13,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(int id, String courseName, Date startDate, String endDate,
+    public Course(int id, String courseName, String startDate, String endDate,
             String description) {
         this.id = id;
         this.courseName = courseName;
@@ -38,11 +38,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
