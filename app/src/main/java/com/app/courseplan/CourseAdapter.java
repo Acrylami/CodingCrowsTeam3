@@ -45,7 +45,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Course course = mCourses.get(position);
-        holder.courseId.setText(String.valueOf(course.getId()));
+        //Instead of displaying ID, display num in list for current month
+        holder.courseId.setText(String.valueOf(position+1));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
 
