@@ -23,9 +23,8 @@ public class CourseDetails extends AppCompatActivity {
     Button cancelButton;
     Button saveButton;
     EditText courseTitle, courseURL, courseDescription, startDate, endDate;
-//    Date Picker
+    //    Date Picker
     private DatePickerDialog.OnDateSetListener startDateSetListener, endDateSetListener;
-
 
 
     @Override
@@ -92,7 +91,7 @@ public class CourseDetails extends AppCompatActivity {
                         CourseDetails.this,
                         R.style.MyDatePickerStyle,
                         startDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
@@ -112,7 +111,7 @@ public class CourseDetails extends AppCompatActivity {
                         CourseDetails.this,
                         R.style.MyDatePickerStyle,
                         endDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
@@ -122,7 +121,7 @@ public class CourseDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 //              months counts from zero ie January = 0 & Dec = 11
-                month = month +1;
+                month = month + 1;
                 String date = month + "/" + day + "/" + year;
                 startDate.setText(date);
             }
@@ -131,12 +130,16 @@ public class CourseDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 //              months counts from zero ie January = 0 & Dec = 11
-                month = month +1;
+                month = month + 1;
                 String date = month + "/" + day + "/" + year;
                 endDate.setText(date);
             }
         };
 
+        Intent intent = getIntent();
+        if(intent.getParcelableExtra("selected_course") != null) {
+
+        }
 
     }
 

@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        CourseAdapter.CourseAdapterOnClickHandler {
 
 
     private RecyclerView mRecyclerView;
@@ -125,11 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         myDB = new DatabaseHelper(MainActivity.this);
-
-        //mCourseAdapter = new CourseAdapter(MainActivity.this, mCourseList);
-        //Instead of the above line which displays all courses, just display the ones for the current month
-        mCourseAdapter = new CourseAdapter(MainActivity.this, thisMonthCourses);
-
+        mCourseAdapter = new CourseAdapter(MainActivity.this, thisMonthCourses, this);
         mRecyclerView.setAdapter(mCourseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
@@ -171,5 +168,13 @@ public class MainActivity extends AppCompatActivity {
                 mCourseList.add(course);
             }
         }
+    }
+
+    @Override
+    public void onClick(int position) {
+        Course course = mCourseList.get(position);
+        Intent intent = new Intent(this, CourseDetails.class);
+        intent.putExtra("selected_course", course);
+        startActivity(intent);
     }
 }

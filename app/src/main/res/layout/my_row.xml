@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -34,9 +34,9 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="4dp"
                 android:text="Intro To Programming"
+                android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000"
                 app:layout_constraintStart_toEndOf="@+id/course_id_txt"
                 app:layout_constraintTop_toTopOf="@+id/course_id_txt" />
 
