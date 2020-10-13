@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements
                 Date firstOfMonth = currentDate;
 
                 //Check if either the start date or end date is current month, or any date in between it
-                Log.e("=================", "Course: " + eachCourse.getCourseName() + ",  date is: " + currentDate + " and the course date is: " + startDate + "-" + endDate);
                 if ((currentDate.after(startDate) || startDate.equals(currentDate) || (currentDate.getMonth()==startDate.getMonth() && currentDate.getYear()==startDate.getYear())) && (currentDate.before(endDate) || currentDate.equals(endDate) || (currentDate.getMonth()==endDate.getMonth() && currentDate.getYear()==endDate.getYear()))) {
                     //Add the course if it is for the current month
                     thisMonthCourses.add(eachCourse);
@@ -154,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements
 
     void StoreDataInArrays() {
         Cursor cursor = myDB.readAllData();
-        if (cursor.getCount() == 0) {
+        if (cursor.getCount() == 0) { //This is only for database
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
