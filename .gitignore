@@ -86,3 +86,6 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+.idea/codeStyles/Project.xml
+.idea/codeStyles/Project.xml
+.idea/codeStyles/Project.xml

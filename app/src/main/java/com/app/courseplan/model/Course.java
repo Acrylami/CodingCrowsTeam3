@@ -22,6 +22,17 @@ public class Course implements Parcelable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
+        this.courseUrl = courseUrl;
+    }
+
+    //Another way to create a course without knowing the id it should be
+    public Course(String courseName, String startDate, String endDate,
+                  String description, String courseUrl) {
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.courseUrl = courseUrl;
     }
 
     protected Course(Parcel in) {
