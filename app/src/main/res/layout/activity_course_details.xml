@@ -7,41 +7,14 @@
     tools:context=".ui.CourseDetails">
 
 
-    <TextView
-        android:id="@+id/endDateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="134dp"
-        android:text="End Date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
-
-    <EditText
-        android:id="@+id/courseTitle"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="470dp"
-        android:background="@drawable/back"
-        android:hint="Title"
-        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </EditText>
-
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="102dp"
         android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="292dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="534dp"
-        android:layout_marginEnd="292dp"
-        android:layout_marginBottom="16dp"
         android:backgroundTint="#DCDDDD"
         android:text="CANCEL"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,10 +26,10 @@
         android:id="@+id/saveButton"
         android:layout_width="102dp"
         android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginStart="162dp"
         android:layout_marginTop="534dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
         android:backgroundTint="#0D84DF"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,17 +38,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/courseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="470dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back"
+        android:hint="Title"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </EditText>
+
+    <EditText
         android:id="@+id/startDate"
         android:layout_width="180dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="367dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="54dp"
-        android:layout_marginBottom="367dp"
         android:background="@drawable/back"
         android:ems="10"
-        android:inputType="date"
-        android:hint="Start Date"
         android:focusableInTouchMode="false"
+        android:hint="Start Date"
+        android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/cancelButton"
         app:layout_constraintEnd_toStartOf="@+id/endDate"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,14 +76,14 @@
         android:id="@+id/endDate"
         android:layout_width="180dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="367dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="54dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="367dp"
         android:background="@drawable/back"
         android:ems="10"
-        android:hint="End Date"
         android:focusableInTouchMode="false"
+        android:hint="End Date"
         android:inputType="date"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -108,10 +98,10 @@
         android:id="@+id/courseURL"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="270dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="270dp"
         android:background="@drawable/back"
         android:hint="URL"
         app:layout_constraintBottom_toTopOf="@+id/cancelButton"
@@ -125,10 +115,10 @@
         android:id="@+id/courseDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="100dp"
         android:background="@drawable/back"
         android:ems="10"
         android:gravity="start|top"
@@ -138,6 +128,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/courseURL" />
+
+    <TextView
+        android:id="@+id/endDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="134dp"
+        android:layout_marginTop="17dp"
+        android:text="End Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
 
     <TextView
         android:id="@+id/startDateText"

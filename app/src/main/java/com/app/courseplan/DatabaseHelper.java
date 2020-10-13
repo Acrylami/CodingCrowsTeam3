@@ -12,19 +12,19 @@ import androidx.annotation.Nullable;
 import java.sql.Date;
 
 
-public class DatabaseHelper  extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "CourseLibrary.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "my_courses";
-    private static final String COLUMN_ID ="_id";
+    private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "course_title";
-    private static final String COLUMN_STARTDATE =" course_startdate";
+    private static final String COLUMN_STARTDATE = " course_startdate";
     private static final String COLUMN_ENDDATE = "course_enddate";
-    private static final String COLUMN_URL ="course_url";
-    private static final String COLUMN_DESCRIPTION ="course_description";
+    private static final String COLUMN_URL = "course_url";
+    private static final String COLUMN_DESCRIPTION = "course_description";
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -35,12 +35,12 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
-                        " (" +  COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_TITLE + " TEXT, " +
-                        COLUMN_STARTDATE + " DATE, " +
-                        COLUMN_ENDDATE + " DATE, " +
-                        COLUMN_URL + " TEXT, " +
-                        COLUMN_DESCRIPTION + " TEXT);";
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TITLE + " TEXT, " +
+                COLUMN_STARTDATE + " DATE, " +
+                COLUMN_ENDDATE + " DATE, " +
+                COLUMN_URL + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT);";
         db.execSQL(query);
     }
 
@@ -50,7 +50,8 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addCourse(String title, String startdate, String enddate, String url, String description){
+    public void addCourse(String title, String startdate, String enddate, String url,
+            String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -61,23 +62,22 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         cv.put(COLUMN_DESCRIPTION, description);
         long result = db.insert(TABLE_NAME, null, cv);
 //        If Execution to db fails
-        if (result == -1){
+        if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             Toast.makeText(context, "Added Course", Toast.LENGTH_SHORT).show();
         }
     }
 
-     public Cursor readAllData(){
+    public Cursor readAllData() {
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
 //        If database is empty
         Cursor cursor = null;
-        if (db!= null ){
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
-        return  cursor;
+        return cursor;
     }
 }

@@ -18,7 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        CourseAdapter.CourseAdapterOnClickHandler {
 
     private RecyclerView mRecyclerView;
     private DatabaseHelper myDB;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         myDB = new DatabaseHelper(MainActivity.this);
-        mCourseAdapter = new CourseAdapter(MainActivity.this, mCourseList);
+        mCourseAdapter = new CourseAdapter(MainActivity.this, mCourseList, this);
         mRecyclerView.setAdapter(mCourseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
@@ -73,5 +74,13 @@ public class MainActivity extends AppCompatActivity {
                 mCourseList.add(course);
             }
         }
+    }
+
+    @Override
+    public void onClick(int position) {
+        Course course = mCourseList.get(position);
+        Intent intent = new Intent(this, CourseDetails.class);
+        intent.putExtra("selected_course", course);
+        startActivity(intent);
     }
 }

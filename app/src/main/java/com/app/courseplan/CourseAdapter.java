@@ -17,10 +17,17 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     private Context context;
     private List<Course> mCourses;
+    private final CourseAdapterOnClickHandler mClickHandler;
 
-    public CourseAdapter(Context context, List<Course> courses) {
+    public interface CourseAdapterOnClickHandler {
+        void onClick(int position);
+    }
+
+    public CourseAdapter(Context context, List<Course> courses,
+            CourseAdapterOnClickHandler clickHandler) {
         this.context = context;
         mCourses = courses;
+        mClickHandler = clickHandler;
     }
 
     @NonNull
@@ -37,7 +44,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.courseId.setText(String.valueOf(course.getId()));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
-
     }
 
     @Override
@@ -45,7 +51,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         return mCourses.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView courseId;
         private TextView courseTitle;
         private TextView courseUrl;
@@ -55,6 +61,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             courseTitle = itemView.findViewById(R.id.course_title_txt);
             courseId = itemView.findViewById(R.id.course_id_txt);
             courseUrl = itemView.findViewById(R.id.course_url_txt);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int adapterPosition = getAdapterPosition();
+            mClickHandler.onClick(adapterPosition);
         }
     }
 }
