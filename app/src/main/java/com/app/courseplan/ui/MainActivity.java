@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
         myDB = new DatabaseHelper(MainActivity.this);
-        mCourseAdapter = new CourseAdapter(MainActivity.this, mCourseList, this);
+        mCourseAdapter = new CourseAdapter(MainActivity.this, thisMonthCourses, this);
         mRecyclerView.setAdapter(mCourseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
