@@ -62,7 +62,11 @@ public class CourseDetails extends AppCompatActivity {
                         newCourse.getEndDate().trim(),
                         newCourse.getCourseUrl().trim(),
                         newCourse.getDescription().trim());
+
+                finish();
             }
+
+
         });
 
         // Cancel Button
