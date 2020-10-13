@@ -25,8 +25,8 @@ public class CourseDetails extends AppCompatActivity {
     Button cancelButton, saveButton, deleteButton;
     EditText courseTitle, courseURL, courseDescription, startDate, endDate;
     //Course ID/ Title for the delete dialog
-    String id, title;
-    //    Date Picker
+    int id;
+    String title;
     private DatePickerDialog.OnDateSetListener startDateSetListener, endDateSetListener;
 
 
@@ -160,8 +160,10 @@ public class CourseDetails extends AppCompatActivity {
 
     // Confirm Dialog for delete button
     void confirmDialog() {
-        id = getIntent().getStringExtra("id");
-        title = getIntent().getStringExtra("title");
+        Intent intent = getIntent();
+        Course course = intent.getParcelableExtra("selected_course");
+        id = course.getId();
+        title = course.getCourseName();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + title + " ?");
         builder.setMessage("Are you sure you want to delete " + title + " ?");
@@ -169,7 +171,7 @@ public class CourseDetails extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 DatabaseHelper myDB = new DatabaseHelper(CourseDetails.this);
-                myDB.deleteOneRow(id);
+                myDB.deleteOneRow(Integer.toString(id));
                 finish();
             }
         });

@@ -47,16 +47,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.courseId.setText(String.valueOf(course.getId()));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                this to to get the course Id and name and send them to the Course Details Class for the delete dialog
-                Intent intent = new Intent(context, CourseDetails.class);
-                intent.putExtra("id", String.valueOf(course.getId()));
-                intent.putExtra("title", String.valueOf(course.getCourseName()));
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -74,14 +64,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         private TextView courseId;
         private TextView courseTitle;
         private TextView courseUrl;
-        LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             courseTitle = itemView.findViewById(R.id.course_title_txt);
             courseId = itemView.findViewById(R.id.course_id_txt);
             courseUrl = itemView.findViewById(R.id.course_url_txt);
-            mainLayout = itemView.findViewById(R.id.mainLayout);
             itemView.setOnClickListener(this);
         }
 
