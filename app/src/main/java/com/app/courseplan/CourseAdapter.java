@@ -42,13 +42,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        //Added null pointer error handling
-        if (mCourses != null) {
-            return mCourses.size();
-        }
-        else {
-            return 0;
-        }
+        return mCourses.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

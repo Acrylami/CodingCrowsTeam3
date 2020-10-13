@@ -1,6 +1,8 @@
 package com.app.courseplan.ui;
 
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,8 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.app.courseplan.DatabaseHelper;
 import com.app.courseplan.R;
@@ -39,6 +41,7 @@ public class CourseDetails extends AppCompatActivity {
         endDate = findViewById(R.id.endDate);
         courseURL = findViewById(R.id.courseURL);
         courseDescription = findViewById(R.id.courseDescription);
+
 
 
         saveButton = findViewById(R.id.saveButton);
