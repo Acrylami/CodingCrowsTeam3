@@ -16,7 +16,7 @@ public class Course implements Parcelable {
     }
 
     public Course(int id, String courseName, String startDate, String endDate,
-            String description) {
+            String description, String courseUrl) {
         this.id = id;
         this.courseName = courseName;
         this.startDate = startDate;
@@ -27,7 +27,7 @@ public class Course implements Parcelable {
 
     //Another way to create a course without knowing the id it should be
     public Course(String courseName, String startDate, String endDate,
-                  String description, String courseUrl) {
+            String description, String courseUrl) {
         this.courseName = courseName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -38,10 +38,10 @@ public class Course implements Parcelable {
     protected Course(Parcel in) {
         id = in.readInt();
         courseName = in.readString();
+        courseUrl = in.readString();
+        description = in.readString();
         startDate = in.readString();
         endDate = in.readString();
-        description = in.readString();
-        courseUrl = in.readString();
     }
 
     public static final Creator<Course> CREATOR = new Creator<Course>() {
