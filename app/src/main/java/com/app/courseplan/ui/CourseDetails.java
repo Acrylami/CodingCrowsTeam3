@@ -22,13 +22,10 @@ import com.app.courseplan.model.Course;
 
 public class CourseDetails extends AppCompatActivity {
 
-    Button cancelButton, saveButton, deleteButton;
-    EditText courseTitle, courseURL, courseDescription, startDate, endDate;
-    //Course ID/ Title for the delete dialog
-    int id;
-    String title;
+    private EditText courseTitle, courseURL, courseDescription, startDate, endDate;
     private DatePickerDialog.OnDateSetListener startDateSetListener, endDateSetListener;
-
+    private Course mCourseToEdit;
+    private DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,50 +38,64 @@ public class CourseDetails extends AppCompatActivity {
         endDate = findViewById(R.id.endDate);
         courseURL = findViewById(R.id.courseURL);
         courseDescription = findViewById(R.id.courseDescription);
-        deleteButton = findViewById(R.id.deleteButton);
-        saveButton = findViewById(R.id.saveButton);
+
+        Intent intent = getIntent();
+        if (intent.getParcelableExtra("selected_course") != null) {
+            mCourseToEdit = intent.getParcelableExtra("selected_course");
+            fillFields();
+        }
+
+        myDB = new DatabaseHelper(CourseDetails.this);
 
         // Save functionality
+        Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
-            //We'll need some way to differentiate between editing an existing course and adding a new one
+            //We'll need some way to differentiate between editing an existing course and adding
+            // a new one
             //to prevent duplicate database entries...
             @Override
             public void onClick(View view) {
                 //Create a new course
-                Course newCourse = new Course(courseTitle.getText().toString(), startDate.getText().toString(), endDate.getText().toString(), courseDescription.getText().toString(), courseURL.getText().toString());
+                Course newCourse = new Course(courseTitle.getText().toString(),
+                        startDate.getText().toString(), endDate.getText().toString(),
+                        courseDescription.getText().toString(), courseURL.getText().toString());
 
-                //Add that new course to the ArrayList of all our courses
-                //MainActivity.allCourses.add(newCourse); Must switch to new Array name
-
-                //Save to database
-                DatabaseHelper myDB = new DatabaseHelper(CourseDetails.this);
-                myDB.addCourse(
-                        newCourse.getCourseName().trim(),
-                        newCourse.getStartDate().trim(),
-                        newCourse.getEndDate().trim(),
-                        newCourse.getCourseUrl().trim(),
-                        newCourse.getDescription().trim());
-
+                if (mCourseToEdit == null) {
+                    //Save to database
+                    myDB.addCourse(
+                            newCourse.getCourseName().trim(),
+                            newCourse.getStartDate().trim(),
+                            newCourse.getEndDate().trim(),
+                            newCourse.getCourseUrl().trim(),
+                            newCourse.getDescription().trim());
+                } else {
+                    Course savedCourse = new Course(
+                            mCourseToEdit.getId(),
+                            courseTitle.getText().toString(),
+                            startDate.getText().toString(),
+                            endDate.getText().toString(),
+                            courseDescription.getText().toString(),
+                            courseURL.getText().toString());
+                    myDB.updateCourse(savedCourse);
+                }
                 finish();
-
             }
-
-
         });
 
         //  Delete Button functionality
+        Button deleteButton = findViewById(R.id.deleteButton);
+        if (mCourseToEdit == null) {
+            deleteButton.setVisibility(View.GONE);
+        }
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirmDialog();
-
             }
-
-
         });
 
         // Cancel Button
-        cancelButton = findViewById(R.id.cancelButton);
+        Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,9 +104,7 @@ public class CourseDetails extends AppCompatActivity {
             }
         });
 
-
-//Date Picker Dialogs and Listeners
-
+        //Date Picker Dialogs and Listeners
         // Start Date
         startDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +125,6 @@ public class CourseDetails extends AppCompatActivity {
         });
 
         // End Date
-
         endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +146,7 @@ public class CourseDetails extends AppCompatActivity {
         startDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-//              months counts from zero ie January = 0 & Dec = 11
+                // months counts from zero ie January = 0 & Dec = 11
                 month = month + 1;
                 String date = month + "/" + day + "/" + year;
                 startDate.setText(date);
@@ -147,34 +155,32 @@ public class CourseDetails extends AppCompatActivity {
         endDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-//              months counts from zero ie January = 0 & Dec = 11
+                // months counts from zero ie January = 0 & Dec = 11
                 month = month + 1;
                 String date = month + "/" + day + "/" + year;
                 endDate.setText(date);
             }
         };
+    }
 
-        Intent intent = getIntent();
-        if(intent.getParcelableExtra("selected_course") != null) {
-
-        }
-
-
+    private void fillFields() {
+        courseTitle.setText(mCourseToEdit.getCourseName());
+        courseDescription.setText(mCourseToEdit.getDescription());
+        courseURL.setText(mCourseToEdit.getCourseUrl());
+        startDate.setText(mCourseToEdit.getStartDate());
+        endDate.setText(mCourseToEdit.getEndDate());
     }
 
     // Confirm Dialog for delete button
     void confirmDialog() {
-        Intent intent = getIntent();
-        Course course = intent.getParcelableExtra("selected_course");
-        id = course.getId();
-        title = course.getCourseName();
+        final int id = mCourseToEdit.getId();
+        String title = mCourseToEdit.getCourseName();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + title + " ?");
         builder.setMessage("Are you sure you want to delete " + title + " ?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                DatabaseHelper myDB = new DatabaseHelper(CourseDetails.this);
                 myDB.deleteOneRow(Integer.toString(id));
                 finish();
             }
@@ -182,11 +188,9 @@ public class CourseDetails extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-//                Nothing will happen when no is clicked apart from the dialog being dismissed
+                // Nothing will happen when no is clicked apart from the dialog being dismissed
             }
         });
         builder.create().show();
     }
-
-
 }

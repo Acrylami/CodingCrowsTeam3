@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Date;
+import com.app.courseplan.model.Course;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -56,8 +56,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_STARTDATE, String.valueOf(startdate));
-        cv.put(COLUMN_ENDDATE, String.valueOf(enddate));
+        cv.put(COLUMN_STARTDATE, startdate);
+        cv.put(COLUMN_ENDDATE, enddate);
         cv.put(COLUMN_URL, url);
         cv.put(COLUMN_DESCRIPTION, description);
         long result = db.insert(TABLE_NAME, null, cv);
@@ -66,6 +66,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Added Course", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void updateCourse(Course course) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID, course.getId());
+        cv.put(COLUMN_TITLE, course.getCourseName());
+        cv.put(COLUMN_STARTDATE, course.getStartDate());
+        cv.put(COLUMN_ENDDATE, course.getEndDate());
+        cv.put(COLUMN_URL, course.getCourseUrl());
+        cv.put(COLUMN_DESCRIPTION, course.getDescription());
+        long result = db.update(TABLE_NAME, cv, "_id=" + course.getId(), null);
+        if (result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Updated Course", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -82,14 +100,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-//    Delete course from database
-    public void deleteOneRow(String row_id){
+    //    Delete course from database
+    public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         //Error handling
-        if(result == -1){
+        if (result == -1) {
             Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_SHORT).show();
         }
     }

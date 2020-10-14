@@ -29,48 +29,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements
         CourseAdapter.CourseAdapterOnClickHandler {
 
-
     private RecyclerView mRecyclerView;
     private DatabaseHelper myDB;
     private ArrayList<Course> mCourseList;
-    private ArrayList<Course> thisMonthCourses = new ArrayList<Course>();
+    private ArrayList<Course> thisMonthCourses = new ArrayList<>();
     private CourseAdapter mCourseAdapter;
 
-    public Calendar displayCal;
-    public Date currentDate;
-    public String currentMonth;
-
-    private void updateCurrentMonthText() {
-        //Display current month as text e.g. October
-        currentDate = displayCal.getTime();
-        SimpleDateFormat dfMonthText = new SimpleDateFormat("MMMM YYYY", Locale.getDefault());
-        String formattedDate = dfMonthText.format(currentDate);
-        TextView tv1 = (TextView)findViewById(R.id.monthName);
-        tv1.setText(formattedDate);
-    }
-
-    private void filterCourses() {
-        //Filters the courses on the home screen depending on the month selected
-        for (Course eachCourse: mCourseList) {
-            Date startDate;
-            Date endDate;
-            //convert dates to real Date
-            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-            try {
-                startDate = formatter.parse(eachCourse.getStartDate());
-                endDate = formatter.parse(eachCourse.getEndDate());
-                Date firstOfMonth = currentDate;
-
-                //Check if either the start date or end date is current month, or any date in between it
-                if ((currentDate.after(startDate) || startDate.equals(currentDate) || (currentDate.getMonth()==startDate.getMonth() && currentDate.getYear()==startDate.getYear())) && (currentDate.before(endDate) || currentDate.equals(endDate) || (currentDate.getMonth()==endDate.getMonth() && currentDate.getYear()==endDate.getYear()))) {
-                    //Add the course if it is for the current month
-                    thisMonthCourses.add(eachCourse);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    private Calendar displayCal;
+    private Date currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -142,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements
             thisMonthCourses.clear();
         }
 
-        updateCurrentMonthText(); //Update the date with current month in case a next/previous month button pressed
+        updateCurrentMonthText(); //Update the date with current month in case a next/previous
+        // month button pressed
         StoreDataInArrays(); //Gets data from database and stores it in mCourseList
         filterCourses(); //Only add courses for the current month to be displayed
         mCourseAdapter.notifyDataSetChanged(); //Finally display new view
@@ -152,6 +118,43 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void updateCurrentMonthText() {
+        //Display current month as text e.g. October
+        currentDate = displayCal.getTime();
+        SimpleDateFormat dfMonthText = new SimpleDateFormat("MMMM YYYY", Locale.getDefault());
+        String formattedDate = dfMonthText.format(currentDate);
+        TextView tv1 = (TextView) findViewById(R.id.monthName);
+        tv1.setText(formattedDate);
+    }
+
+    private void filterCourses() {
+        //Filters the courses on the home screen depending on the month selected
+        for (Course eachCourse : mCourseList) {
+            Date startDate;
+            Date endDate;
+            //convert dates to real Date
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            try {
+                startDate = formatter.parse(eachCourse.getStartDate());
+                endDate = formatter.parse(eachCourse.getEndDate());
+                Date firstOfMonth = currentDate;
+
+                //Check if either the start date or end date is current month, or any date in
+                // between it
+                if ((currentDate.after(startDate) || startDate.equals(currentDate) || (
+                        currentDate.getMonth() == startDate.getMonth()
+                                && currentDate.getYear() == startDate.getYear())) && (
+                        currentDate.before(endDate) || currentDate.equals(endDate) || (
+                                currentDate.getMonth() == endDate.getMonth()
+                                        && currentDate.getYear() == endDate.getYear()))) {
+                    //Add the course if it is for the current month
+                    thisMonthCourses.add(eachCourse);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
     void StoreDataInArrays() {

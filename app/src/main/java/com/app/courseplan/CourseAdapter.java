@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 
 import android.graphics.Color;
-import android.util.Log;
-
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.courseplan.model.Course;
-import com.app.courseplan.ui.CourseDetails;
 
 import java.util.List;
 
@@ -50,13 +47,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         Course course = mCourses.get(position);
         //Instead of displaying ID, display num in list for current month
-        holder.courseId.setText(String.valueOf(position+1));
+        holder.courseId.setText(String.valueOf(position + 1));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
 
@@ -74,8 +69,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             String urlToCheck = String.valueOf(holder.courseUrl.getText());
             if (!(urlToCheck.startsWith("http://") || urlToCheck.startsWith(("https://")))) {
                 urlToCheck = "http://" + String.valueOf(holder.courseUrl.getText());
-            }
-            else {
+            } else {
                 urlToCheck = String.valueOf(holder.courseUrl.getText()); //quick hack to add http://
             }
             final String urlToOpen = urlToCheck;
@@ -91,22 +85,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             });
         }
 
-
-
         //Find colour
         if (course.getId() % 10 == 1 || course.getId() % 10 == 6) {
             colour = 0XFFFFA69E;
-        }
-        else if (course.getId() % 10 == 2 || course.getId() % 10 == 7) {
+        } else if (course.getId() % 10 == 2 || course.getId() % 10 == 7) {
             colour = 0XFFFAF3DD;
-        }
-        else if (course.getId() % 10 == 3 || course.getId() % 10 == 8) {
+        } else if (course.getId() % 10 == 3 || course.getId() % 10 == 8) {
             colour = 0XFFB8F2E6;
-        }
-        else if (course.getId() % 10 == 4 || course.getId() % 10 == 9) {
+        } else if (course.getId() % 10 == 4 || course.getId() % 10 == 9) {
             colour = 0XFFAED9E0;
-        }
-        else if (course.getId() % 10 == 5 || course.getId() % 10 == 0) {
+        } else if (course.getId() % 10 == 5 || course.getId() % 10 == 0) {
             colour = 0XFF5E6472;
             //Also set text colour
             holder.courseTitle.setTextColor(Color.WHITE);
@@ -116,9 +104,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         //Background colour
         //itemView.findViewById(R.id.constraint_course).setBackgroundColor(colour);
         holder.courseContainer.setBackgroundColor(colour);
-
-        Log.e("==========", course.getCourseName() + " and colour: " + colour);
-
     }
 
     @Override
@@ -126,8 +111,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         //Added null pointer error handling
         if (mCourses != null) {
             return mCourses.size();
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -140,15 +124,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
         ConstraintLayout courseContainer;
 
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             courseTitle = itemView.findViewById(R.id.course_title_txt);
             courseId = itemView.findViewById(R.id.course_id_txt);
             courseUrl = itemView.findViewById(R.id.course_url_txt);
             linkButton = itemView.findViewById(R.id.linkButton);
-
-
             courseContainer = itemView.findViewById(R.id.constraint_course);
 
             itemView.setOnClickListener(this);
