@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.graphics.Color;
 import android.util.Log;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Course course = mCourses.get(position);
-        holder.courseId.setText(String.valueOf(course.getId()));
+        //Instead of displaying ID, display num in list for current month
+        holder.courseId.setText(String.valueOf(position+1));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
-
 
         //LINK BUTTON CODE
         //Check if url is not set, if not disable button
@@ -86,6 +87,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                 }
             });
         }
+
 
 
         //Find colour
@@ -132,7 +134,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         private TextView courseTitle;
         private TextView courseUrl;
         private ImageButton linkButton;
+
         ConstraintLayout courseContainer;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -141,7 +145,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             courseUrl = itemView.findViewById(R.id.course_url_txt);
             linkButton = itemView.findViewById(R.id.linkButton);
 
+
             courseContainer = itemView.findViewById(R.id.constraint_course);
+
             itemView.setOnClickListener(this);
         }
 

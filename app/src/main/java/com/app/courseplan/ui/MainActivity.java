@@ -146,6 +146,10 @@ public class MainActivity extends AppCompatActivity implements
         StoreDataInArrays(); //Gets data from database and stores it in mCourseList
         filterCourses(); //Only add courses for the current month to be displayed
         mCourseAdapter.notifyDataSetChanged(); //Finally display new view
+        //If this month has no courses, display toast saying so
+        if (thisMonthCourses.isEmpty()) {
+            Toast.makeText(this, "No courses for this month", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
