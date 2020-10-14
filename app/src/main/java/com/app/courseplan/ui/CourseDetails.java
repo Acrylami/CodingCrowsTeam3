@@ -1,7 +1,9 @@
 package com.app.courseplan.ui;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -20,10 +22,11 @@ import com.app.courseplan.model.Course;
 
 public class CourseDetails extends AppCompatActivity {
 
-    Button cancelButton;
-    Button saveButton;
+    Button cancelButton, saveButton, deleteButton;
     EditText courseTitle, courseURL, courseDescription, startDate, endDate;
-    //    Date Picker
+    //Course ID/ Title for the delete dialog
+    int id;
+    String title;
     private DatePickerDialog.OnDateSetListener startDateSetListener, endDateSetListener;
 
 
@@ -38,8 +41,7 @@ public class CourseDetails extends AppCompatActivity {
         endDate = findViewById(R.id.endDate);
         courseURL = findViewById(R.id.courseURL);
         courseDescription = findViewById(R.id.courseDescription);
-
-
+        deleteButton = findViewById(R.id.deleteButton);
         saveButton = findViewById(R.id.saveButton);
 
         // Save functionality
@@ -64,6 +66,18 @@ public class CourseDetails extends AppCompatActivity {
                         newCourse.getDescription().trim());
 
                 finish();
+
+            }
+
+
+        });
+
+        //  Delete Button functionality
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog();
+
             }
 
 
@@ -145,6 +159,33 @@ public class CourseDetails extends AppCompatActivity {
 
         }
 
+
+    }
+
+    // Confirm Dialog for delete button
+    void confirmDialog() {
+        Intent intent = getIntent();
+        Course course = intent.getParcelableExtra("selected_course");
+        id = course.getId();
+        title = course.getCourseName();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + title + " ?");
+        builder.setMessage("Are you sure you want to delete " + title + " ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                DatabaseHelper myDB = new DatabaseHelper(CourseDetails.this);
+                myDB.deleteOneRow(Integer.toString(id));
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+//                Nothing will happen when no is clicked apart from the dialog being dismissed
+            }
+        });
+        builder.create().show();
     }
 
 

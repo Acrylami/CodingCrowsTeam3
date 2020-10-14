@@ -2,6 +2,7 @@ package com.app.courseplan;
 
 import android.content.Context;
 
+
 import android.content.Intent;
 import android.net.Uri;
 
@@ -20,6 +21,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.courseplan.model.Course;
+import com.app.courseplan.ui.CourseDetails;
 
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         Course course = mCourses.get(position);
         //Instead of displaying ID, display num in list for current month
         holder.courseId.setText(String.valueOf(position+1));
