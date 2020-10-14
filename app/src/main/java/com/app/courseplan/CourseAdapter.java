@@ -1,11 +1,17 @@
 package com.app.courseplan;
 
 import android.content.Context;
+
+import android.content.Intent;
+import android.net.Uri;
+
 import android.graphics.Color;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,12 +47,46 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Course course = mCourses.get(position);
         holder.courseId.setText(String.valueOf(course.getId()));
         holder.courseTitle.setText(String.valueOf(course.getCourseName()));
         holder.courseUrl.setText(String.valueOf(course.getCourseUrl()));
+
+
+        //LINK BUTTON CODE
+        //Check if url is not set, if not disable button
+        if (course.getCourseUrl().length() < 1) {
+            //Hides the link button if no link
+            holder.linkButton.setEnabled(false);
+            holder.linkButton.setVisibility(View.GONE);
+        }
+        //If there is a link, then process it and set up click event
+        else {
+            //URL handler
+            //Check if it has http:// at start
+            String urlToCheck = String.valueOf(holder.courseUrl.getText());
+            if (!(urlToCheck.startsWith("http://") || urlToCheck.startsWith(("https://")))) {
+                urlToCheck = "http://" + String.valueOf(holder.courseUrl.getText());
+            }
+            else {
+                urlToCheck = String.valueOf(holder.courseUrl.getText()); //quick hack to add http://
+            }
+            final String urlToOpen = urlToCheck;
+
+            //Set on click event
+            holder.linkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Open link in browser
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToOpen));
+                    context.startActivity(browserIntent);
+                }
+            });
+        }
+
 
         //Find colour
         if (course.getId() % 10 == 1 || course.getId() % 10 == 6) {
@@ -73,6 +113,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.courseContainer.setBackgroundColor(colour);
 
         Log.e("==========", course.getCourseName() + " and colour: " + colour);
+
     }
 
     @Override
@@ -90,6 +131,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         private TextView courseId;
         private TextView courseTitle;
         private TextView courseUrl;
+        private ImageButton linkButton;
         ConstraintLayout courseContainer;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -97,6 +139,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             courseTitle = itemView.findViewById(R.id.course_title_txt);
             courseId = itemView.findViewById(R.id.course_id_txt);
             courseUrl = itemView.findViewById(R.id.course_url_txt);
+            linkButton = itemView.findViewById(R.id.linkButton);
 
             courseContainer = itemView.findViewById(R.id.constraint_course);
             itemView.setOnClickListener(this);
