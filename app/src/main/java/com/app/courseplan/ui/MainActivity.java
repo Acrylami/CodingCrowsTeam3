@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(int position) {
-        Course course = mCourseList.get(position);
+        Course course = thisMonthCourses.get(position);
         Intent intent = new Intent(this, CourseDetails.class);
         intent.putExtra("selected_course", course);
         startActivity(intent);
