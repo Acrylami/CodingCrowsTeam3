@@ -6,7 +6,7 @@
 
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
-
+[![Release](https://img.shields.io/github/v/release/Acrylami/CodingCrowsTeam3?style=flat-square)](https://github.com/Acrylami/CodingCrowsTeam3/releases/tag/1.0)
 
 
 # Course Planner
@@ -22,9 +22,9 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Demo](#demo)
-* [Features](#demo)
+* [Features](#features)
 * [License](#license)
-* [Contact Info](#license)
+* [Contact Info](#contact)
 
 
 
@@ -64,8 +64,14 @@ https://github.com/Acrylami/CodingCrowsTeam3
 <!-- USAGE EXAMPLES -->
 ## Demo
 
-![Demo Gif](readme_resources/demo1.gif)
+![Demo Gif](readme_resources/android.gif)
 
+## Features
+
+* CRUD Functionality - the user can add, update and delete courses
+* SQLite Database
+* Course filtering by start - end Date
+* Quick link to course website
 
 
 <!-- LICENSE -->
@@ -81,9 +87,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [contributors-url]: https://github.com/Acrylami/CodingCrowsTeam3/graphs/contributors
 [license-shield]: https://img.shields.io/github/license/Acrylami/CodingCrowsTeam3.svg?style=flat-square
 [license-url]: https://github.com/Acrylami/CodingCrowsTeam3/blob/master/LICENSE.txt
+[release-shield]: https://img.shields.io/github/license/Acrylami/CodingCrowsTeam3.svg?style=flat-square
+[release-url]: https://github.com/Acrylami/CodingCrowsTeam3/releases/tag/1.0
 
 <!-- Contact Info -->
-## Contact info
+## Contact
 
 * Arlyn Miles [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue)](https://www.linkedin.com/in/arlyn-m-06b4331b9/) 
 * Reda Tawfik [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue)](https://www.linkedin.com/in/redatawfik/) 
