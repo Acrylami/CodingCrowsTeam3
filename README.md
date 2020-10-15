@@ -63,7 +63,7 @@ https://github.com/Acrylami/CodingCrowsTeam3
 
 <!-- USAGE EXAMPLES -->
 ## Demo
-
+![Demo](readme_resources/android.gif)
 
 ## Features
 
